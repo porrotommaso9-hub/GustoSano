@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#FBF5EC">
+<title>Gusto Sano · Caffè & Bistrò Artigianale a Sestri Levante</title>
+<meta name="description" content="Gusto Sano: caffè e bistrò artigianale 100% senza glutine a Sestri Levante, Piazza Aldo Moro 5. Poke bowl, açaí bowl, focacce gourmet e aperitivo. Opzioni vegan e senza lattosio.">
+<link rel="icon" type="image/jpeg" href="assets/logo.jpeg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:#F5E9DA;
+    --paper:#FBF5EC;
+    --ink:#211F14;
+    --ink-soft:#454130;
+    --sage:#7C9464;
+    --sage-dark:#5C7548;
+    --ochre:#C67C33;
+    --ochre-dark:#A8621F;
+    --line: rgba(42,42,31,0.12);
+    --shadow: 0 18px 40px -22px rgba(42,42,31,0.35);
+    --radius: 22px;
+    --maxw: 1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; background:var(--paper); color-scheme:light;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:500;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  main{ background:var(--paper); }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    font-weight:600;
+    color:var(--sage-dark);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:var(--ochre);
+    display:inline-block;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:14px 26px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:15px;
+    text-decoration:none;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--ochre);
+    color:#fff;
+    box-shadow:0 14px 28px -14px rgba(198,124,51,0.65);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); background:var(--ochre-dark); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+    border-color:var(--line);
+  }
+  .btn-ghost:hover{ border-color:var(--ink); transform:translateY(-2px); }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+    max-width:var(--maxw); margin:0 auto;
+  }
+  .brand{ display:flex; align-items:center; gap:11px; text-decoration:none; }
+  .brand img{ width:40px; height:40px; border-radius:11px; }
+  .brand-name{ font-family:'Fraunces',serif; font-weight:600; font-size:19px; color:var(--sage-dark); }
+  .brand-tag{ display:block; font-family:'Work Sans',sans-serif; font-weight:500; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--sage-dark); }
+
+  nav.links{ display:flex; align-items:center; gap:30px; }
+  nav.links a{
+    text-decoration:none; font-size:14.5px; font-weight:500; color:var(--ink-soft);
+    position:relative; padding:4px 0;
+  }
+  nav.links a:hover{ color:var(--ink); }
+  .nav-cta{ display:flex; align-items:center; gap:12px; }
+  .burger{
+    display:none; position:relative; width:38px; height:38px;
+    background:var(--cream); border:1px solid var(--line); border-radius:11px;
+    cursor:pointer; padding:0; flex:none;
+  }
+  .burger span{
+    display:block; position:absolute; left:9px; width:20px; height:2px;
+    background:var(--ink); border-radius:2px;
+    transition: transform .3s ease, opacity .2s ease, top .3s ease;
+  }
+  .burger span:nth-child(1){ top:14px; }
+  .burger span:nth-child(2){ top:18px; }
+  .burger span:nth-child(3){ top:22px; }
+  .burger.open span:nth-child(1){ top:18px; transform:rotate(45deg); }
+  .burger.open span:nth-child(2){ opacity:0; }
+  .burger.open span:nth-child(3){ top:18px; transform:rotate(-45deg); }
+
+  .mobile-panel{
+    display:none;
+    flex-direction:column;
+    gap:16px;
+    background:var(--paper);
+    border-top:1px solid var(--line);
+    padding:22px 24px 26px;
+  }
+  .mobile-panel.open{ display:flex; }
+  .mobile-panel .mp-links{
+    display:flex; flex-direction:column; gap:6px;
+    background:var(--cream);
+    border-radius:18px;
+    padding:8px;
+  }
+  .mobile-panel .mp-links a{
+    display:flex; align-items:center; gap:12px;
+    padding:13px 12px; text-decoration:none; color:var(--ink); font-weight:600;
+    font-size:15.5px; border-radius:12px;
+    transition: background .2s ease;
+  }
+  .mobile-panel .mp-links a:active,
+  .mobile-panel .mp-links a:hover{ background:rgba(124,148,100,0.16); }
+  .mobile-panel .mp-links a .mp-ico{
+    width:32px; height:32px; border-radius:9px; flex:none;
+    display:flex; align-items:center; justify-content:center; font-size:15px;
+    background:var(--paper); color:var(--sage-dark);
+  }
+  .mobile-panel .mp-cta{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--ochre); color:#fff; font-weight:700; font-size:15.5px;
+    text-decoration:none; padding:15px; border-radius:100px;
+    box-shadow:0 14px 26px -14px rgba(198,124,51,0.65);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:64px 0 40px;
+    background:
+      radial-gradient(60% 55% at 82% 10%, rgba(124,148,100,0.16), transparent 65%),
+      radial-gradient(50% 50% at 10% 90%, rgba(198,124,51,0.14), transparent 60%),
+      var(--paper);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.1fr 0.9fr; gap:56px; align-items:center;
+  }
+  .rating-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:8px 14px 8px 8px;
+    border-radius:100px;
+    font-size:13px; font-weight:600;
+    margin-bottom:22px;
+    box-shadow:var(--shadow);
+  }
+  .rating-pill .stars{ color:var(--ochre); letter-spacing:1px; }
+  .kicker-word{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:16px;
+    letter-spacing:.03em;
+    color:var(--sage-dark);
+    margin-bottom:10px;
+  }
+  .hero h1{
+    font-size:clamp(38px, 5.6vw, 68px);
+    line-height:1.03;
+    letter-spacing:-0.02em;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--sage-dark);
+  }
+  .hero p.lead{
+    margin-top:22px;
+    font-size:18px;
+    color:var(--ink-soft);
+    max-width:46ch;
+  }
+  .hero-actions{ display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+  .hero-badges{
+    display:flex; gap:22px; margin-top:42px; flex-wrap:wrap;
+  }
+  .hero-badge{ display:flex; align-items:center; gap:9px; font-size:13.5px; color:var(--ink-soft); font-weight:500; }
+  .hero-badge .dot{ width:7px; height:7px; border-radius:50%; background:var(--sage); flex:none; }
+
+  .hero-visual{
+    position:relative;
+    aspect-ratio: 1/1.05;
+    border-radius: 32px;
+    background: var(--cream);
+    border:1px solid rgba(42,42,31,0.08);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .hero-visual::before{
+    content:"";
+    position:absolute; width:70%; aspect-ratio:1/1; border-radius:50%;
+    background: radial-gradient(circle, rgba(124,148,100,0.30), transparent 70%);
+    top:-14%; right:-16%;
+    filter: blur(2px);
+  }
+  .hero-visual::after{
+    content:"";
+    position:absolute; width:60%; aspect-ratio:1/1; border-radius:50%;
+    background: radial-gradient(circle, rgba(198,124,51,0.26), transparent 70%);
+    bottom:-18%; left:-14%;
+    filter: blur(2px);
+  }
+  .hero-visual img{
+    width:56%;
+    border-radius:28px;
+    position:relative; z-index:1;
+    box-shadow: 0 30px 50px -20px rgba(42,42,31,0.35);
+    animation: floaty 6s ease-in-out infinite;
+  }
+  @keyframes floaty{
+    0%,100%{ transform:translateY(0px) rotate(-1.5deg); }
+    50%{ transform:translateY(-14px) rotate(1.5deg); }
+  }
+  .hero-visual .tag{
+    position:absolute; bottom:22px; left:22px; right:22px;
+    background:rgba(251,245,236,0.96);
+    border:1px solid rgba(42,42,31,0.08);
+    border-radius:16px;
+    padding:16px 18px;
+    display:flex; align-items:center; gap:12px;
+    z-index:2;
+  }
+  .hero-visual .tag .dotico{
+    width:38px; height:38px; border-radius:10px; background:var(--sage);
+    display:flex; align-items:center; justify-content:center; color:#fff; font-size:17px; flex:none;
+  }
+  .hero-visual .tag strong{ display:block; font-size:13.5px; }
+  .hero-visual .tag span{ display:block; font-size:12px; color:var(--ink-soft); }
+
+  /* ---------- leaf divider (signature element) ---------- */
+  .leaf-divider{
+    width:100%;
+    display:flex; justify-content:center;
+    padding:6px 0 2px;
+    background:var(--paper);
+  }
+  .leaf-divider svg{ width:120px; height:44px; overflow:visible; }
+  .leaf-path{
+    fill:none;
+    stroke:var(--sage);
+    stroke-width:2.4;
+    stroke-linecap:round;
+    stroke-dasharray: 240;
+    stroke-dashoffset: 240;
+    transition: stroke-dashoffset 1.4s ease;
+  }
+  .leaf-path.ochre{ stroke:var(--ochre); stroke-dasharray:210; stroke-dashoffset:210; transition-delay:.2s; }
+  .leaf-divider.in-view .leaf-path{ stroke-dashoffset:0; }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding:88px 0; background:var(--paper); position:relative; }
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .section-head h2{ font-size:clamp(28px,3.6vw,42px); margin-top:14px; letter-spacing:-0.01em; }
+  .section-head p{ margin-top:14px; color:var(--ink-soft); font-size:16.5px; }
+
+  /* ---------- PILLARS ---------- */
+  .pillars{ background:var(--cream); }
+  .pillar-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+  .pillar{
+    background:var(--paper);
+    border-radius:var(--radius);
+    padding:34px 28px;
+    border:1px solid var(--line);
+  }
+  .pillar .num{
+    font-family:'Fraunces',serif; font-style:italic; font-size:15px; color:var(--ochre-dark); font-weight:600;
+  }
+  .pillar h3{ font-size:22px; margin-top:14px; }
+  .pillar p{ margin-top:10px; color:var(--ink-soft); font-size:15px; }
+
+  /* ---------- MENU ---------- */
+  .menu-top{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; }
+  .menu-grid{
+    margin-top:44px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  .menu-card{
+    border-radius:var(--radius);
+    border:1px solid var(--line);
+    padding:28px 24px;
+    background:var(--paper);
+    position:relative;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .menu-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow); }
+  .menu-card .icon{
+    width:46px; height:46px; border-radius:13px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px; margin-bottom:16px;
+  }
+  .menu-card.sage .icon{ background:rgba(124,148,100,0.16); color:var(--sage-dark); }
+  .menu-card.ochre .icon{ background:rgba(198,124,51,0.16); color:var(--ochre-dark); }
+  .menu-card h3{ font-size:19px; }
+  .menu-card p{ margin-top:8px; font-size:14.5px; color:var(--ink-soft); }
+  .menu-card .price{
+    margin-top:16px; font-family:'Fraunces',serif; font-style:italic; font-size:14px; color:var(--ochre-dark);
+  }
+
+  .highlight-band{
+    margin-top:56px;
+    display:grid; grid-template-columns:1fr 1fr; gap:20px;
+  }
+  .highlight-card{
+    border-radius:var(--radius);
+    padding:32px;
+    color:var(--ink);
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .highlight-card.burger{ background: linear-gradient(155deg, rgba(198,124,51,0.14), var(--paper) 65%); }
+  .highlight-card.aperitivo{ background: linear-gradient(155deg, rgba(124,148,100,0.16), var(--paper) 65%); }
+  .highlight-card h3{ color:var(--ink); font-size:24px; margin-top:14px; }
+  .highlight-card p{ color:var(--ink-soft); margin-top:10px; font-size:15px; max-width:38ch; }
+  .highlight-card.burger .when{ color:var(--ochre-dark); }
+  .highlight-card.aperitivo .when{ color:var(--sage-dark); }
+  .highlight-card .when{
+    margin-top:18px; display:inline-flex; align-items:center; gap:8px;
+    background:var(--paper); border:1px solid var(--line); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600;
+  }
+
+  .menu-note{
+    margin-top:36px; font-size:13.5px; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:22px;
+  }
+
+  /* ---------- LOCATION ---------- */
+  .location{ background:var(--cream); }
+  .location-grid{ display:grid; grid-template-columns:0.95fr 1.05fr; gap:44px; align-items:start; }
+  .info-card{
+    background:var(--paper); border-radius:var(--radius); border:1px solid var(--line);
+    padding:32px;
+  }
+  .info-row{ display:flex; gap:16px; padding:18px 0; border-bottom:1px solid var(--line); }
+  .info-row:last-child{ border-bottom:none; }
+  .info-row .ic{
+    width:40px; height:40px; border-radius:11px; background:rgba(124,148,100,0.16); color:var(--sage-dark);
+    display:flex; align-items:center; justify-content:center; flex:none; font-size:17px;
+  }
+  .info-row strong{ display:block; font-size:15px; }
+  .info-row span, .info-row a{ display:block; font-size:14px; color:var(--ink-soft); text-decoration:none; margin-top:2px; }
+  .info-row a:hover{ color:var(--ochre-dark); }
+  .hours-table{ width:100%; border-collapse:collapse; margin-top:4px; }
+  .hours-table td{ padding:3px 0; font-size:14px; color:var(--ink-soft); }
+  .hours-table td:last-child{ text-align:right; font-weight:600; color:var(--ink); }
+  .hours-table tr.today td{ color:var(--ochre-dark); font-weight:600; }
+
+  .map-embed{
+    border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);
+    min-height:420px; box-shadow:var(--shadow);
+  }
+  .map-embed iframe{ width:100%; height:100%; min-height:420px; border:0; display:block; }
+
+  /* ---------- SOCIAL ---------- */
+  .social{ text-align:center; }
+  .social .section-head{ margin:0 auto 40px; text-align:center; }
+  .social-links{ display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+  .social-card{
+    width:220px; border-radius:var(--radius); border:1px solid var(--line); background:var(--paper);
+    padding:28px 20px; text-decoration:none; color:var(--ink); transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .social-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow); }
+  .social-card .ic{ font-size:26px; margin-bottom:12px; }
+  .social-card strong{ display:block; font-size:15px; }
+  .social-card span{ display:block; font-size:13px; color:var(--ink-soft); margin-top:4px; }
+
+  /* ---------- CTA FOOTER ---------- */
+  .cta-band{
+    background: var(--cream);
+    border:1px solid var(--line);
+    color:var(--ink); border-radius:32px; margin:0 24px; padding:64px 40px; text-align:center;
+    max-width:calc(var(--maxw) - 48px); margin-left:auto; margin-right:auto;
+  }
+  .cta-band h2{ color:var(--ink); font-size:clamp(28px,4vw,42px); }
+  .cta-band p{ color:var(--ink-soft); margin-top:14px; font-size:16px; }
+  .cta-band .hero-actions{ justify-content:center; margin-top:30px; }
+  .cta-band .btn-ghost{ color:var(--ink); border-color:var(--line); background:var(--paper); }
+  .cta-band .btn-ghost:hover{ border-color:var(--ink); }
+
+  footer{ padding:56px 0 30px; }
+  .foot-grid{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; }
+  .foot-brand{ display:flex; align-items:center; gap:10px; }
+  .foot-brand img{ width:32px; height:32px; border-radius:9px; }
+  footer p{ font-size:13px; color:var(--ink-soft); margin:0; }
+  .foot-links{ display:flex; gap:20px; }
+  .foot-links a{ text-decoration:none; font-size:13.5px; color:var(--ink-soft); }
+  .foot-links a:hover{ color:var(--ink); }
+
+  /* reveal on scroll */
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 920px){
+    .hero-grid{ grid-template-columns:1fr; gap:40px; }
+    .hero-visual{ order:-1; max-width:360px; margin:0 auto; aspect-ratio:1/0.9; }
+    .pillar-grid{ grid-template-columns:1fr; }
+    .menu-grid{ grid-template-columns:1fr 1fr; }
+    .highlight-band{ grid-template-columns:1fr; }
+    .location-grid{ grid-template-columns:1fr; }
+    nav.links{ display:none; }
+    .burger{ display:block; }
+  }
+  @media (max-width: 620px){
+    section{ padding:60px 0; }
+    .menu-grid{ grid-template-columns:1fr; }
+    .nav-cta .btn-ghost{ display:none; }
+    .cta-band{ padding:48px 24px; border-radius:24px; }
+    .hero{ padding:40px 0 24px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#top" class="brand">
+      <img src="assets/logo.jpeg" alt="Logo Gusto Sano">
+      <span>
+        <span class="brand-name">Gusto Sano</span>
+        <span class="brand-tag">Bistrò Artigianale</span>
+      </span>
+    </a>
+    <nav class="links">
+      <a href="#filosofia">Filosofia</a>
+      <a href="#menu">Menu</a>
+      <a href="#dove-siamo">Dove siamo</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:+390185699656" class="btn btn-ghost">0185 699656</a>
+      <a href="tel:+390185699656" class="btn btn-primary">Prenota</a>
+      <button class="burger" id="burgerBtn" aria-label="Apri menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-panel" id="mobilePanel">
+    <div class="mp-links">
+      <a href="#filosofia"><span class="mp-ico">🌿</span>Filosofia</a>
+      <a href="#menu"><span class="mp-ico">🍊</span>Menu</a>
+      <a href="#dove-siamo"><span class="mp-ico">📍</span>Dove siamo</a>
+      <a href="#contatti"><span class="mp-ico">✉️</span>Contatti</a>
+    </div>
+    <a href="tel:+390185699656" class="mp-cta">📞 Prenota: chiama lo 0185 699656</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding-top:64px;">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="rating-pill">
+          <span class="stars">★★★★★</span> 4,8 su Google · 41 recensioni
+        </div>
+        <div class="kicker-word">Gusto Sano</div>
+        <h1>Il gusto <em>che fa bene.</em></h1>
+        <p class="lead">Caffè e bistrò artigianale a Sestri Levante. Cucina 100% senza glutine, pensata per tutti, con opzioni vegan e senza lattosio, a due passi dalla Baia del Silenzio.</p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-primary">Scopri il menu</a>
+          <a href="https://maps.google.com/?q=Gusto+Sano,+Piazza+Aldo+Moro+5,+16039+Sestri+Levante+GE" target="_blank" rel="noopener" class="btn btn-ghost">Come arrivare</a>
+        </div>
+        <div class="hero-badges">
+          <div class="hero-badge"><span class="dot"></span>100% Gluten Free</div>
+          <div class="hero-badge"><span class="dot"></span>Opzioni vegan &amp; senza lattosio</div>
+          <div class="hero-badge"><span class="dot"></span>Piazza Aldo Moro 5, Sestri Levante</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/logo.jpeg" alt="Gusto Sano">
+        <div class="tag">
+          <div class="dotico">☕</div>
+          <div>
+            <strong>Aperto oggi</strong>
+            <span id="todayHours">Consulta gli orari di oggi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="leaf-divider" data-reveal>
+    <svg viewBox="0 0 120 44" fill="none">
+      <path class="leaf-path" d="M4 40 C 20 10, 45 6, 58 22 C 45 24, 24 28, 4 40 Z"/>
+      <path class="leaf-path ochre" d="M116 40 C 100 10, 75 6, 62 22 C 75 24, 96 28, 116 40 Z"/>
+    </svg>
+  </div>
+
+  <!-- FILOSOFIA -->
+  <section class="pillars" id="filosofia">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">La filosofia</div>
+        <h2>Da materie prime di qualità, alimenti sani pensati per tutti.</h2>
+        <p>Ogni piatto nasce senza glutine per scelta, non per compromesso. Freschezza, semplicità e cura artigianale, ogni giorno in laboratorio.</p>
+      </div>
+      <div class="pillar-grid">
+        <div class="pillar reveal">
+          <div class="num">01</div>
+          <h3>Artigianale</h3>
+          <p>Focacce, dolci e piatti preparati a mano ogni giorno, con lavorazioni brevi e ingredienti selezionati.</p>
+        </div>
+        <div class="pillar reveal">
+          <div class="num">02</div>
+          <h3>Sano</h3>
+          <p>Cucina 100% gluten free, con opzioni vegan e senza lattosio: il gusto pieno, senza rinunce.</p>
+        </div>
+        <div class="pillar reveal">
+          <div class="num">03</div>
+          <h3>Genuino</h3>
+          <p>Materie prime di alta qualità, ricette semplici e trasparenti: quello che vedi è quello che mangi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="wrap">
+      <div class="menu-top reveal">
+        <div class="section-head" style="margin-bottom:0;">
+          <div class="eyebrow">Menu estivo</div>
+          <h2>Fresco, colorato, leggero.</h2>
+          <p>Creato senza glutine. Pensato per tutti.</p>
+        </div>
+        <a href="tel:+390185699656" class="btn btn-ghost">Chiedi il menu completo</a>
+      </div>
+
+      <div class="menu-grid">
+        <div class="menu-card sage reveal">
+          <div class="icon">🍊</div>
+          <h3>Spremute &amp; Smoothies</h3>
+          <p>Frutta fresca spremuta al momento e smoothies energizzanti, la spinta giusta per iniziare la giornata.</p>
+        </div>
+        <div class="menu-card ochre reveal">
+          <div class="icon">🍓</div>
+          <h3>Açaí Bowl</h3>
+          <p>Crema di açaí con granola artigianale e frutta fresca di stagione, senza glutine.</p>
+        </div>
+        <div class="menu-card sage reveal">
+          <div class="icon">🥗</div>
+          <h3>Poke Bowl</h3>
+          <p>Basi fresche, proteine e verdure croccanti: colore e leggerezza in ogni ciotola.</p>
+        </div>
+        <div class="menu-card ochre reveal">
+          <div class="icon">🍅</div>
+          <h3>Caprese</h3>
+          <p>Il classico rivisitato con ingredienti selezionati e olio extravergine ligure.</p>
+        </div>
+        <div class="menu-card sage reveal">
+          <div class="icon">🫓</div>
+          <h3>Tris di Focaccia Gourmet</h3>
+          <p>Tre farciture artigianali su focaccia 100% senza glutine, fatta in casa.</p>
+        </div>
+        <div class="menu-card ochre reveal">
+          <div class="icon">☕</div>
+          <h3>Caffetteria</h3>
+          <p>Espresso, cappuccino e dolci da forno artigianali, ogni mattina dalle 7:30.</p>
+        </div>
+      </div>
+
+      <div class="highlight-band">
+        <div class="highlight-card burger reveal">
+          <div class="eyebrow">Solo il giovedì · a pranzo</div>
+          <h3>Giovedì Burger Lunch</h3>
+          <p>Classic Burger: pane senza glutine, hamburger e patate al forno. Semplice, buono e 100% senza glutine.</p>
+          <div class="when">🕐 Giovedì · pranzo dalle 12:00 alle 15:00</div>
+        </div>
+        <div class="highlight-card aperitivo reveal">
+          <div class="eyebrow">Due sere a settimana</div>
+          <h3>Aperitivo Gusto Sano</h3>
+          <p>Il nostro momento speciale, con riserva consigliata. Leggerezza e gusto anche a fine giornata.</p>
+          <div class="when">🕕 Giovedì e Sabato · dalle 18:00 alle 20:00</div>
+        </div>
+      </div>
+
+      <p class="menu-note reveal">Il menu è aggiornato stagionalmente. Per allergie, intolleranze specifiche o richieste speciali, chiamaci allo 0185 699656: ti aspettiamo anche solo per un caffè.</p>
+    </div>
+  </section>
+
+  <div class="leaf-divider" data-reveal>
+    <svg viewBox="0 0 120 44" fill="none">
+      <path class="leaf-path" d="M4 40 C 20 10, 45 6, 58 22 C 45 24, 24 28, 4 40 Z"/>
+      <path class="leaf-path ochre" d="M116 40 C 100 10, 75 6, 62 22 C 75 24, 96 28, 116 40 Z"/>
+    </svg>
+  </div>
+
+  <!-- LOCATION -->
+  <section class="location" id="dove-siamo">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Dove siamo</div>
+        <h2>Nel cuore di Sestri Levante.</h2>
+        <p>A due passi dalla Baia del Silenzio, comodo per una colazione, un pranzo veloce o l'aperitivo.</p>
+      </div>
+      <div class="location-grid">
+        <div class="info-card reveal">
+          <div class="info-row">
+            <div class="ic">📍</div>
+            <div>
+              <strong>Indirizzo</strong>
+              <a href="https://maps.google.com/?q=Gusto+Sano,+Piazza+Aldo+Moro+5,+16039+Sestri+Levante+GE" target="_blank" rel="noopener">Piazza Aldo Moro, 5, 16039 Sestri Levante (GE)</a>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="ic">📞</div>
+            <div>
+              <strong>Telefono</strong>
+              <a href="tel:+390185699656">0185 699656</a>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="ic">🕐</div>
+            <div style="width:100%;">
+              <strong style="margin-bottom:8px;">Orari</strong>
+              <table class="hours-table">
+                <tr><td>Lunedì</td><td>7:30 → 18:00</td></tr>
+                <tr><td>Martedì</td><td>7:30 → 18:00</td></tr>
+                <tr><td>Mercoledì</td><td>7:30 → 18:00</td></tr>
+                <tr><td>Giovedì</td><td>7:30 → 18:00</td></tr>
+                <tr><td>Venerdì</td><td>7:30 → 18:00</td></tr>
+                <tr><td>Sabato</td><td>7:30 → 20:00</td></tr>
+                <tr><td>Domenica</td><td>Chiuso</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="map-embed reveal">
+          <iframe
+            src="https://maps.google.com/maps?q=Gusto%20Sano%2C%20Piazza%20Aldo%20Moro%205%2C%2016039%20Sestri%20Levante%20GE&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mappa Gusto Sano, Piazza Aldo Moro 5, Sestri Levante"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <section class="social">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Seguici</div>
+        <h2>Il gusto che fa bene, ogni giorno.</h2>
+      </div>
+      <div class="social-links reveal">
+        <a class="social-card" href="https://www.instagram.com/gustosano.it" target="_blank" rel="noopener">
+          <div class="ic">📸</div>
+          <strong>Instagram</strong>
+          <span>@gustosano.it</span>
+        </a>
+        <a class="social-card" href="https://www.facebook.com/" target="_blank" rel="noopener">
+          <div class="ic">👍</div>
+          <strong>Facebook</strong>
+          <span>Gusto Sano Sestri Levante</span>
+        </a>
+        <a class="social-card" href="tel:+390185699656">
+          <div class="ic">📞</div>
+          <strong>Chiamaci</strong>
+          <span>0185 699656</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contatti" style="padding-top:20px;">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Ti aspettiamo in Piazza Aldo Moro, 5.</h2>
+        <p>Per prenotazioni all'aperitivo o informazioni sul menu, chiamaci: rispondiamo sempre volentieri.</p>
+        <div class="hero-actions">
+          <a href="tel:+390185699656" class="btn btn-primary">Chiama il 0185 699656</a>
+          <a href="https://maps.google.com/?q=Gusto+Sano,+Piazza+Aldo+Moro+5,+16039+Sestri+Levante+GE" target="_blank" rel="noopener" class="btn btn-ghost">Apri in Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <img src="assets/logo.jpeg" alt="Gusto Sano">
+      <p>© <span id="year"></span> Gusto Sano · Piazza Aldo Moro, 5, Sestri Levante (GE)</p>
+    </div>
+    <div class="foot-links">
+      <a href="https://www.instagram.com/gustosano.it" target="_blank" rel="noopener">Instagram</a>
+      <a href="tel:+390185699656">0185 699656</a>
+      <a href="#top">Torna su ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile menu
+  const burger = document.getElementById('burgerBtn');
+  const panel = document.getElementById('mobilePanel');
+  burger.addEventListener('click', () => {
+    panel.classList.toggle('open');
+    burger.classList.toggle('open');
+  });
+  panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    panel.classList.remove('open');
+    burger.classList.remove('open');
+  }));
+
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // today's hours badge
+  (function(){
+    const hours = {0:'Chiuso',1:'7:30 alle 18:00',2:'7:30 alle 18:00',3:'7:30 alle 18:00',4:'7:30 alle 18:00',5:'7:30 alle 18:00',6:'7:30 alle 20:00'};
+    const days = {0:'Domenica',1:'Lunedì',2:'Martedì',3:'Mercoledì',4:'Giovedì',5:'Venerdì',6:'Sabato'};
+    const d = new Date().getDay();
+    const el = document.getElementById('todayHours');
+    if(el){
+      el.textContent = hours[d] === 'Chiuso' ? days[d] + ' · chiuso' : days[d] + ' · dalle ' + hours[d];
+    }
+  })();
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal, .leaf-divider').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
